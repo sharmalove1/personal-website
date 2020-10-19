@@ -1,0 +1,66 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background: linear-gradient(to right, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    .head_text {
+        color: white;
+    }
+
+    .card {
+        box-shadow: 0 16px 48px #E3E7EB;
+    }
+    .bg-gradient{
+      background:#008080;
+    }
+    .bg-gradient-button{
+      background:#008080;
+      color: #fff
+    }
+    .bg-gradient-button{
+      color: #fff;
+    }
+</style>
+<header class="masthead bg-gradient border-dark">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-12 col-lg-12">
+                <div class="site-heading text-center">
+                  <section class="d-flex flex-column justify-content-center">
+                    <h3 class="site-heading my-4 mt-3 text-white">BLOG</h3>
+                  </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-12 mt-3 left">
+            {% for post in post_list %}
+            <div class="card mb-4 card-gradient">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-9">
+                      <h2 class="card-title gradient-text">{{ post.title }}</h2>
+                    </div>
+                    <div class="col-sm-3 text-right">
+                      <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                    </div>
+                  </div>
+                    <p class="card-text">{{post.content|slice:":200" }}</p>
+                    <a href="{% url 'post_detail' post.slug  %}" class="btn bg-gradient-button">Read More &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%endblock%}
